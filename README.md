@@ -56,4 +56,4 @@ cleanup:
 `kubectl delete ns ingress-nginx`
 `kubectl config use-context docker-desktop`
 `kubectl config delete-context kind-kind`
-`kind delete kind`
+`kind delete cluster`
