@@ -1,21 +1,18 @@
-# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: todo-ingress
+  name: todoapp-ingress
   namespace: todoapp
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: todoapp-service
-            port:
-              number: 80
-           
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /(|$)(.*)
+            backend:
+              service:
+                name: todoapp-service
+                port:
+                  number: 80
